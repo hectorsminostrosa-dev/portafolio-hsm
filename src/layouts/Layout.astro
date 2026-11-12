@@ -1,0 +1,48 @@
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <!-- Tailwind CSS CDN -->
+        <script is:inline src="https://cdn.tailwindcss.com"></script>
+        <script is:inline>
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            emerald: {
+                                400: '#34d399',
+                                500: '#10b981',
+                            },
+                        },
+                    },
+                },
+            }
+        </script>
+        <style>
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            details summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
+        <slot />
+    </body>
+</html>
