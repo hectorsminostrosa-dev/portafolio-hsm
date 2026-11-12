@@ -1,0 +1,87 @@
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <!-- Tipografía Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <!-- Tailwind CSS CDN -->
+        <script is:inline src="https://cdn.tailwindcss.com"></script>
+        <script is:inline>
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        },
+                        colors: {
+                            // Paleta azul marino (reemplaza los grises oscuros por defecto)
+                            slate: {
+                                700: '#26324a',
+                                800: '#1a2438',
+                                900: '#0f1729',
+                                950: '#080d1a',
+                            },
+                            emerald: {
+                                400: '#34d399',
+                                500: '#10b981',
+                            },
+                        },
+                    },
+                },
+            }
+        </script>
+        <style is:global>
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            details summary::-webkit-details-marker {
+                display: none;
+            }
+            /* Texto con degradado verde → azul */
+            .text-gradient {
+                background: linear-gradient(90deg, #34d399 0%, #2dd4bf 45%, #38bdf8 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            /* Fondo degradado verde → azul (logo, bordes) */
+            .bg-brand {
+                background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            }
+            /* Resplandor verde detrás del hero */
+            .hero-glow {
+                background:
+                    radial-gradient(ellipse 60% 45% at 50% 0%, rgba(16, 185, 129, 0.14), transparent 70%),
+                    radial-gradient(ellipse 40% 35% at 85% 30%, rgba(14, 165, 233, 0.08), transparent 70%);
+            }
+            /* Tarjeta destacada con brillo */
+            .card-glow {
+                box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.25), 0 0 45px -12px rgba(16, 185, 129, 0.45);
+            }
+            /* Botón principal con brillo */
+            .btn-glow {
+                box-shadow: 0 8px 28px -8px rgba(16, 185, 129, 0.6);
+            }
+        </style>
+    </head>
+    <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
+        <slot />
+    </body>
+</html>
